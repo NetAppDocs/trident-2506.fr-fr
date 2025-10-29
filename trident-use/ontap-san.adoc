@@ -1,0 +1,145 @@
+---
+sidebar: sidebar 
+permalink: trident-use/ontap-san.html 
+keywords: trident backend, ontap san, ontap-san, ontap-san-economy, fsx, drivers, access modes, rwo, rwx, rwp, rwop, file system 
+summary: Découvrez comment configurer un système dorsal ONTAP avec les pilotes SAN ONTAP . 
+---
+= Présentation du pilote ONTAP SAN
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez comment configurer un backend ONTAP avec les pilotes SAN ONTAP et Cloud Volumes ONTAP .
+
+
+
+== Détails du pilote ONTAP SAN
+
+Trident fournit les pilotes de stockage SAN suivants pour communiquer avec le cluster ONTAP .  Les modes d'accès pris en charge sont : _ReadWriteOnce_ (RWO), _ReadOnlyMany_ (ROX), _ReadWriteMany_ (RWX), _ReadWriteOncePod_ (RWOP).
+
+[cols="2, 1, 1, 2, 2"]
+|===
+| Conducteur | Protocole | mode de volume | Modes d'accès pris en charge | Systèmes de fichiers pris en charge 
+
+
+| `ontap-san`  a| 
+iSCSI SCSI sur FC
+ a| 
+Bloc
+ a| 
+RWO, ROX, RWX, RWOP
+ a| 
+Aucun système de fichiers ; périphérique de stockage brut
+
+
+
+| `ontap-san`  a| 
+iSCSI SCSI sur FC
+ a| 
+Système de fichiers
+ a| 
+RWO, RWOP
+
+Les modes ROX et RWX ne sont pas disponibles en mode volume du système de fichiers.
+ a| 
+`xfs`, `ext3` , `ext4`
+
+
+
+| `ontap-san`  a| 
+NVMe/TCP
+
+Se référer à<<Considérations supplémentaires concernant NVMe/TCP>> .
+ a| 
+Bloc
+ a| 
+RWO, ROX, RWX, RWOP
+ a| 
+Aucun système de fichiers ; périphérique de stockage brut
+
+
+
+| `ontap-san`  a| 
+NVMe/TCP
+
+Se référer à<<Considérations supplémentaires concernant NVMe/TCP>> .
+ a| 
+Système de fichiers
+ a| 
+RWO, RWOP
+
+Les modes ROX et RWX ne sont pas disponibles en mode volume du système de fichiers.
+ a| 
+`xfs`, `ext3` , `ext4`
+
+
+
+| `ontap-san-economy`  a| 
+iSCSI
+ a| 
+Bloc
+ a| 
+RWO, ROX, RWX, RWOP
+ a| 
+Aucun système de fichiers ; périphérique de stockage brut
+
+
+
+| `ontap-san-economy`  a| 
+iSCSI
+ a| 
+Système de fichiers
+ a| 
+RWO, RWOP
+
+Les modes ROX et RWX ne sont pas disponibles en mode volume du système de fichiers.
+ a| 
+`xfs`, `ext3` , `ext4`
+
+|===
+[WARNING]
+====
+* Utiliser `ontap-san-economy` uniquement si le nombre d'utilisations de volume persistantes devrait être supérieur àlink:https://docs.netapp.com/us-en/ontap/volumes/storage-limits-reference.html["limites de volume ONTAP prises en charge"^] .
+* Utiliser `ontap-nas-economy` uniquement si le nombre d'utilisations de volume persistantes devrait être supérieur àlink:https://docs.netapp.com/us-en/ontap/volumes/storage-limits-reference.html["limites de volume ONTAP prises en charge"^] et le `ontap-san-economy` Le pilote ne peut pas être utilisé.
+* Ne pas utiliser `ontap-nas-economy` si vous prévoyez un besoin en matière de protection des données, de reprise après sinistre ou de mobilité.
+* NetApp ne recommande pas l'utilisation de la croissance automatique Flexvol dans tous les pilotes ONTAP , à l'exception de ontap-san.  En guise de solution de contournement, Trident prend en charge l'utilisation de la réserve de snapshots et adapte les volumes Flexvol en conséquence.
+
+
+====
+
+
+== Autorisations de l'utilisateur
+
+Trident s'attend à être exécuté en tant qu'administrateur ONTAP ou SVM, généralement en utilisant `admin` utilisateur de cluster ou un `vsadmin` Utilisateur SVM, ou un utilisateur portant un nom différent mais ayant le même rôle.  Pour les déploiements Amazon FSx for NetApp ONTAP , Trident s'attend à être exécuté en tant qu'administrateur ONTAP ou SVM, en utilisant le cluster. `fsxadmin` utilisateur ou un `vsadmin` Utilisateur SVM, ou un utilisateur portant un nom différent mais ayant le même rôle.  Le `fsxadmin` L'utilisateur est un remplaçant limité pour l'utilisateur administrateur du cluster.
+
+
+NOTE: Si vous utilisez le `limitAggregateUsage` Les paramètres suivants sont requis : autorisations d’administrateur de cluster.  Lors de l'utilisation Amazon FSx for NetApp ONTAP avec Trident, `limitAggregateUsage` Le paramètre ne fonctionnera pas avec le `vsadmin` et `fsxadmin` comptes utilisateurs.  L'opération de configuration échouera si vous spécifiez ce paramètre.
+
+Bien qu'il soit possible de créer un rôle plus restrictif au sein ONTAP qu'un pilote Trident puisse utiliser, nous ne le recommandons pas.  La plupart des nouvelles versions de Trident feront appel à des API supplémentaires dont il faudra tenir compte, ce qui rendra les mises à niveau difficiles et sujettes aux erreurs.
+
+
+
+== Considérations supplémentaires concernant NVMe/TCP
+
+Trident prend en charge le protocole NVMe (Non-Volatile Memory Express) en utilisant le `ontap-san` conducteur, y compris :
+
+* IPv6
+* Instantanés et clones de volumes NVMe
+* Redimensionnement d'un volume NVMe
+* Importer un volume NVMe créé en dehors de Trident afin que son cycle de vie puisse être géré par Trident
+* Multipathing natif NVMe
+* Arrêt progressif ou brutal des nœuds K8s (24.06)
+
+
+Trident ne prend pas en charge :
+
+* DH-HMAC-CHAP pris en charge nativement par NVMe
+* multipathing du mappeur de périphériques (DM)
+* cryptage LUKS
+
+
+
+NOTE: NVMe est pris en charge uniquement avec les API REST ONTAP et n'est pas pris en charge avec ONTAPI (ZAPI).

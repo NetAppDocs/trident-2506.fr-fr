@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: trident-concepts/snapshots.html 
+keywords: provisioning, Trident 
+summary: 'Découvrez comment Trident gère la création d"instantanés de volume pour ses pilotes.' 
+---
+= Instantanés de volume
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez comment Trident gère la création d'instantanés de volume pour ses pilotes.
+
+
+
+== Découvrez la création d'instantanés de volume
+
+* Pour le `ontap-nas` , `ontap-san` , `gcp-cvs` , et `azure-netapp-files` pilotes, chaque volume persistant (PV) est mappé à un FlexVol volume. Par conséquent, les instantanés de volume sont créés en tant qu'instantanés NetApp .  La technologie de snapshots de NetApp offre une stabilité, une évolutivité, une capacité de récupération et des performances supérieures aux technologies de snapshots concurrentes.  Ces copies instantanées sont extrêmement efficaces, tant en termes de temps de création que d'espace de stockage.
+* Pour le `ontap-nas-flexgroup` pilote, chaque volume persistant (PV) correspond à un FlexGroup.  Par conséquent, les instantanés de volume sont créés en tant qu'instantanés NetApp FlexGroup .  La technologie de snapshots de NetApp offre une stabilité, une évolutivité, une capacité de récupération et des performances supérieures aux technologies de snapshots concurrentes.  Ces copies instantanées sont extrêmement efficaces, tant en termes de temps de création que d'espace de stockage.
+* Pour le `ontap-san-economy` Le pilote, les PV correspondent aux LUN créés sur des volumes FlexVol partagés. Les instantanés de volume des PV sont obtenus en effectuant des FlexClones du LUN associé.  La technologie ONTAP FlexClone permet de créer des copies des ensembles de données les plus volumineux quasiment instantanément.  Les copies partagent des blocs de données avec leurs parents, ne consommant aucun espace de stockage autre que celui nécessaire aux métadonnées.
+* Pour le `solidfire-san` Chaque pilote PV correspond à un LUN créé sur le logiciel NetApp Element /cluster NetApp HCI .  Les instantanés de volume sont représentés par des instantanés d'éléments du LUN sous-jacent.  Ces instantanés sont des copies à un instant précis et n'occupent qu'une petite quantité de ressources système et d'espace.
+* Lorsque vous travaillez avec le `ontap-nas` et `ontap-san` Les pilotes, les instantanés ONTAP sont des copies ponctuelles du FlexVol et consomment de l'espace sur le FlexVol lui-même.  Cela peut entraîner une réduction de l'espace inscriptible disponible dans le volume au fil du temps, à mesure que des instantanés sont créés/planifiés.  Une solution simple consiste à augmenter le volume en le redimensionnant via Kubernetes.  Une autre option consiste à supprimer les instantanés qui ne sont plus nécessaires.  Lorsqu'un VolumeSnapshot créé via Kubernetes est supprimé, Trident supprime également le snapshot ONTAP associé.  Les instantanés ONTAP qui n'ont pas été créés via Kubernetes peuvent également être supprimés.
+
+
+Avec Trident, vous pouvez utiliser VolumeSnapshots pour créer de nouveaux PV à partir de ceux-ci.  La création de volumes persistants à partir de ces instantanés est réalisée à l'aide de la technologie FlexClone pour les systèmes backend ONTAP et CVS pris en charge.  Lors de la création d'un PV à partir d'un instantané, le volume de support est un FlexClone du volume parent de l'instantané.  Le `solidfire-san` Le pilote utilise les clones de volumes logiciels Element pour créer des PV à partir d'instantanés.  Ici, il crée un clone à partir de l'instantané de l'élément.

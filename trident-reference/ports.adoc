@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: trident-reference/ports.html 
+keywords: Trident, port, ports 
+summary: 'Découvrez plus d"informations sur les ports utilisés par Trident pour communiquer.' 
+---
+= Ports Trident
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Découvrez plus d'informations sur les ports utilisés par Trident pour la communication.
+
+
+
+== Ports Trident
+
+Trident utilise les ports suivants pour la communication au sein de Kubernetes :
+
+[cols="2,4"]
+|===
+| Port | But 
+
+
+| 8443 | HTTPS de canal de retour 
+
+
+| 8001 | point de terminaison des métriques Prometheus 
+
+
+| 8000 | Serveur REST Trident 
+
+
+| 17546 | Port de sonde de disponibilité/d'état de fonctionnement utilisé par les pods du démon Trident 
+|===
+
+NOTE: Le port de la sonde de disponibilité/d'état peut être modifié lors de l'installation à l'aide de `--probe-port` drapeau.  Il est important de vérifier que ce port n'est pas utilisé par un autre processus sur les nœuds de travail.

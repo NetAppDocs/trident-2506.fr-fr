@@ -1,0 +1,81 @@
+---
+sidebar: sidebar 
+permalink: trident-get-started/intro.html 
+keywords: product overview, Trident, fsx, element, google cloud, cvs, architecture, node pod, controller pod, pods, csi, sidecar 
+summary: 'Trident est un projet open source entièrement pris en charge et maintenu par NetApp.  Il a été conçu pour vous aider à répondre aux exigences de persistance de votre application conteneurisée en utilisant des interfaces standard de l"industrie, telles que l"interface de stockage de conteneurs (CSI).' 
+---
+= Découvrez Trident
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Trident est un projet open source entièrement pris en charge et maintenu par NetApp.  Il a été conçu pour vous aider à répondre aux exigences de persistance de votre application conteneurisée en utilisant des interfaces standard de l'industrie, telles que l'interface de stockage de conteneurs (CSI).
+
+
+
+== Qu'est-ce que Trident?
+
+NetApp Trident permet la consommation et la gestion des ressources de stockage sur toutes les plateformes de stockage NetApp populaires, dans le cloud public ou sur site, y compris les clusters ONTAP sur site (AFF, FAS et ASA), ONTAP Select, Cloud Volumes ONTAP, le logiciel Element (NetApp HCI, SolidFire), Azure NetApp Files, Amazon FSx for NetApp ONTAP et Cloud Volumes Service sur Google Cloud.
+
+Trident est un orchestrateur de stockage dynamique conforme à l'interface de stockage de conteneurs (CSI) qui s'intègre nativement aveclink:https://kubernetes.io/["Kubernetes"^] .  Trident s'exécute sous la forme d'un seul pod de contrôleur et d'un pod de nœud sur chaque nœud de travail du cluster. Se référer à link:../trident-get-started/architecture.html["Architecture Trident"] pour plus de détails.
+
+Trident assure également une intégration directe avec l'écosystème Docker pour les plateformes de stockage NetApp .  Le plugin NetApp Docker Volume (nDVP) prend en charge le provisionnement et la gestion des ressources de stockage de la plateforme de stockage vers les hôtes Docker. Se référer à link:../trident-docker/deploy-docker.html["Déploiement de Trident pour Docker"] pour plus de détails.
+
+
+NOTE: Si vous utilisez Kubernetes pour la première fois, vous devriez vous familiariser avec…link:https://kubernetes.io/docs/home/["Concepts et outils Kubernetes"^] .
+
+
+
+== Intégration de Kubernetes avec les produits NetApp
+
+La gamme de produits de stockage NetApp s'intègre à de nombreux aspects d'un cluster Kubernetes, offrant des capacités avancées de gestion des données qui améliorent la fonctionnalité, les capacités, les performances et la disponibilité du déploiement Kubernetes.
+
+.Amazon FSx for NetApp ONTAP
+[%collapsible]
+====
+link:https://www.netapp.com/aws/fsx-ontap/["Amazon FSx for NetApp ONTAP"^]est un service AWS entièrement géré qui vous permet de lancer et d'exécuter des systèmes de fichiers alimentés par le système d'exploitation de stockage NetApp ONTAP .
+
+====
+.Azure NetApp Files
+[%collapsible]
+====
+https://www.netapp.com/azure/azure-netapp-files/["Azure NetApp Files"^]est un service de partage de fichiers Azure de niveau entreprise, optimisé par NetApp.  Vous pouvez exécuter vos charges de travail basées sur des fichiers les plus exigeantes dans Azure de manière native, avec les performances et la gestion des données riches que vous attendez de NetApp.
+
+====
+.Cloud Volumes ONTAP
+[%collapsible]
+====
+link:https://www.netapp.com/cloud-services/cloud-volumes-ontap/["Cloud Volumes ONTAP"^]est un dispositif de stockage exclusivement logiciel qui exécute le logiciel de gestion de données ONTAP dans le cloud.
+
+====
+.Google Cloud NetApp Volumes
+[%collapsible]
+====
+link:https://bluexp.netapp.com/google-cloud-netapp-volumes?utm_source=GitHub&utm_campaign=Trident["Google Cloud NetApp Volumes"^]est un service de stockage de fichiers entièrement géré sur Google Cloud qui offre un stockage de fichiers haute performance de niveau entreprise.
+
+====
+.Logiciel Element
+[%collapsible]
+====
+https://www.netapp.com/data-management/element-software/["Élément"^]permet à l'administrateur de stockage de consolider les charges de travail en garantissant les performances et en permettant une empreinte de stockage simplifiée et rationalisée.
+
+====
+.NetApp HCI
+[%collapsible]
+====
+link:https://docs.netapp.com/us-en/hci/docs/concept_hci_product_overview.html["NetApp HCI"^]simplifie la gestion et l'évolution du centre de données en automatisant les tâches de routine et en permettant aux administrateurs d'infrastructure de se concentrer sur des fonctions plus importantes.
+
+Trident peut provisionner et gérer des périphériques de stockage pour les applications conteneurisées directement sur la plateforme de stockage NetApp HCI sous-jacente.
+
+====
+.NetApp ONTAP
+[%collapsible]
+====
+link:https://docs.netapp.com/us-en/ontap/index.html["NetApp ONTAP"^]NetApp est un système d'exploitation de stockage multiprotocole et unifié qui offre des fonctionnalités avancées de gestion des données pour toutes les applications.
+
+Les systèmes ONTAP proposent des configurations entièrement flash, hybrides ou entièrement HDD et offrent de nombreux modèles de déploiement différents : clusters FAS, AFA et ASA sur site, ONTAP Select et Cloud Volumes ONTAP.  Trident prend en charge ces modèles de déploiement ONTAP .
+
+====

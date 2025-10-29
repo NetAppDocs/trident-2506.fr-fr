@@ -1,0 +1,349 @@
+---
+sidebar: sidebar 
+permalink: trident-use/trident-fsx-install-trident.html 
+keywords: Amazon FSx for NetApp ONTAP, FSx for ONTAP, deploy Trident, integrate Trident, Trident add-on, Trident EKS add-on, Trident AWS EKS add-on 
+summary: 'En utilisant Trident avec Amazon FSx for NetApp ONTAP, vous pouvez garantir que vos clusters Kubernetes exécutés dans Amazon Elastic Kubernetes Service (EKS) peuvent provisionner des volumes persistants de blocs et de fichiers pris en charge par ONTAP.' 
+---
+= Installer Trident
+:hardbreaks:
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+Trident simplifie la gestion du stockage Amazon FSx for NetApp ONTAP dans Kubernetes afin de permettre à vos développeurs et administrateurs de se concentrer sur le déploiement des applications.
+
+Vous pouvez installer Trident en utilisant l'une des méthodes suivantes :
+
+* Barre
+* Module complémentaire EKS
+
+
+Si vous souhaitez utiliser la fonctionnalité de capture d'instantané, installez l'extension CSI snapshot controller.  Se référer àlink:https://docs.aws.amazon.com/eks/latest/userguide/csi-snapshot-controller.html["Activer la fonctionnalité de snapshot pour les volumes CSI"^] pour plus d'informations.
+
+
+
+== Installez Trident via Helm.
+
+[role="tabbed-block"]
+====
+.Identité du pod
+--
+. Ajouter le dépôt Trident Helm :
++
+[source, console]
+----
+helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
+----
+. Installez Trident en utilisant l'exemple suivant :
++
+[source, console]
+----
+helm install trident-operator netapp-trident/trident-operator --version 100.2502.1 --namespace trident --create-namespace
+----
++
+Vous pouvez utiliser le `helm list` commande permettant de consulter les détails d'installation tels que le nom, l'espace de noms, le graphique, l'état, la version de l'application et le numéro de révision.
+
++
+[source, console]
+----
+helm list -n trident
+----
++
+[listing]
+----
+NAME                NAMESPACE   REVISION    UPDATED                                 STATUS       CHART                          APP VERSION
+
+trident-operator    trident     1           2024-10-14 14:31:22.463122 +0300 IDT    deployed     trident-operator-100.2502.0    25.02.0
+----
+
+
+--
+.Association de compte de service (IRSA)
+--
+. Ajouter le dépôt Trident Helm :
++
+[source, console]
+----
+helm repo add netapp-trident https://netapp.github.io/trident-helm-chart
+----
+. Définissez les valeurs de *fournisseur de cloud* et *identité cloud* :
++
+[source, console]
+----
+helm install trident-operator netapp-trident/trident-operator --version 100.2502.1  \
+--set cloudProvider="AWS" \
+--set cloudIdentity="'eks.amazonaws.com/role-arn: arn:aws:iam::<accountID>:role/<AmazonEKS_FSxN_CSI_DriverRole>'" \
+--namespace trident \
+--create-namespace
+----
++
+Vous pouvez utiliser le `helm list` commande permettant de consulter les détails d'installation tels que le nom, l'espace de noms, le graphique, l'état, la version de l'application et le numéro de révision.
+
++
+[source, console]
+----
+helm list -n trident
+----
++
+[listing]
+----
+NAME                NAMESPACE   REVISION    UPDATED                                 STATUS       CHART                          APP VERSION
+
+trident-operator    trident     1           2024-10-14 14:31:22.463122 +0300 IDT    deployed     trident-operator-100.2506.0    25.06.0
+----
+
+
+--
+====
+[NOTE]
+====
+Si vous prévoyez d'utiliser iSCSI, assurez-vous que iSCSI est activé sur votre machine cliente.  Si vous utilisez le système d'exploitation du nœud de travail AL2023, vous pouvez automatiser l'installation du client iSCSI en ajoutant le paramètre node prep dans l'installation helm :
+
+[source, console]
+----
+helm install trident-operator netapp-trident/trident-operator --version 100.2502.1 --namespace trident --create-namespace –-set nodePrep={iscsi}
+----
+====
+
+
+== Installez Trident via l'extension EKS
+
+Le module complémentaire Trident EKS inclut les derniers correctifs de sécurité et de bogues, et est validé par AWS pour fonctionner avec Amazon EKS.  Le module complémentaire EKS vous permet de garantir en permanence la sécurité et la stabilité de vos clusters Amazon EKS et de réduire le travail nécessaire à l'installation, à la configuration et à la mise à jour des modules complémentaires.
+
+
+
+=== Prérequis
+
+Assurez-vous de disposer des éléments suivants avant de configurer le module complémentaire Trident pour AWS EKS :
+
+* Un compte de cluster Amazon EKS avec abonnement complémentaire
+* Autorisations AWS pour la place de marché AWS :
+`"aws-marketplace:ViewSubscriptions",
+"aws-marketplace:Subscribe",
+"aws-marketplace:Unsubscribe`
+* Type d'AMI : Amazon Linux 2 (AL2_x86_64) ou Amazon Linux 2 Arm (AL2_ARM_64)
+* Type de nœud : AMD ou ARM
+* Un système de fichiers Amazon FSx for NetApp ONTAP
+
+
+
+
+=== Activez le module complémentaire Trident pour AWS
+
+[role="tabbed-block"]
+====
+.Console de gestion
+--
+. Ouvrez la console Amazon EKS à https://console.aws.amazon.com/eks/home#/clusters[] .
+. Dans le volet de navigation de gauche, sélectionnez *Clusters*.
+. Sélectionnez le nom du cluster pour lequel vous souhaitez configurer le module complémentaire NetApp Trident CSI.
+. Sélectionnez *Modules complémentaires* puis *Obtenir plus de modules complémentaires*.
+. Suivez ces étapes pour sélectionner le module complémentaire :
++
+.. Faites défiler vers le bas jusqu'à la section *modules complémentaires AWS Marketplace* et tapez *"Trident"* dans la zone de recherche.
+.. Cochez la case située dans le coin supérieur droit de la boîte Trident by NetApp .
+.. Sélectionnez *Suivant*.
+
+
+. Sur la page des paramètres *Configurer les modules complémentaires sélectionnés*, procédez comme suit :
++
+
+NOTE: *Ignorez ces étapes si vous utilisez l’association d’identité de pod.*
+
++
+.. Sélectionnez la *Version* que vous souhaitez utiliser.
+.. Si vous utilisez l'authentification IRSA, assurez-vous de définir les valeurs de configuration disponibles dans les paramètres de configuration optionnels :
++
+*** Sélectionnez la *Version* que vous souhaitez utiliser.
+*** Suivez le *schéma de configuration du module complémentaire* et définissez le paramètre *configurationValues* dans la section *Valeurs de configuration* sur le rôle-ARN que vous avez créé à l'étape précédente (la valeur doit être au format suivant) :
+
+
+
+
++
+[source, JSON]
+----
+{
+
+  "cloudIdentity": "'eks.amazonaws.com/role-arn: <role ARN>'",
+  "cloudProvider": "AWS"
+
+}
+----
++
+Si vous sélectionnez Remplacer comme méthode de résolution des conflits, un ou plusieurs paramètres du module complémentaire existant peuvent être remplacés par les paramètres du module complémentaire Amazon EKS.  Si vous n'activez pas cette option et qu'il y a un conflit avec vos paramètres existants, l'opération échouera.  Vous pouvez utiliser le message d'erreur généré pour résoudre le conflit.  Avant de sélectionner cette option, assurez-vous que le module complémentaire Amazon EKS ne gère pas des paramètres que vous devez gérer vous-même.
+
+. Choisissez *Suivant*.
+. Sur la page *Vérifier et ajouter*, choisissez *Créer*.
++
+Une fois l'installation du module complémentaire terminée, vous verrez le module complémentaire installé.
+
+
+
+--
+.AWS CLI
+--
+*1. Créez le `add-on.json` déposer*:
+
+*Pour l'identité du pod, utilisez le format suivant* :
+
+[source, json]
+----
+{
+  "clusterName": "<eks-cluster>",
+  "addonName": "netapp_trident-operator",
+  "addonVersion": "v25.6.0-eksbuild.1",
+}
+----
+*Pour l'authentification IRSA, utilisez le format suivant* :
+
+[source, json]
+----
+{
+  "clusterName": "<eks-cluster>",
+  "addonName": "netapp_trident-operator",
+  "addonVersion": "v25.6.0-eksbuild.1",
+  "serviceAccountRoleArn": "<role ARN>",
+  "configurationValues": {
+    "cloudIdentity": "'eks.amazonaws.com/role-arn: <role ARN>'",
+    "cloudProvider": "AWS"
+  }
+}
+----
+
+NOTE: Remplacer `<role ARN>` avec l'ARN du rôle créé à l'étape précédente.
+
+*2. Installez le module complémentaire Trident EKS.*
+
+[source, console]
+----
+aws eks create-addon --cli-input-json file://add-on.json
+----
+--
+.eksctl
+--
+La commande suivante permet d'installer le module complémentaire Trident EKS :
+
+[source, console]
+----
+eksctl create addon --name netapp_trident-operator --cluster <cluster_name> --force
+----
+--
+====
+
+
+=== Mettre à jour le module complémentaire Trident EKS
+
+[role="tabbed-block"]
+====
+.Console de gestion
+--
+. Ouvrez la console Amazon EKS https://console.aws.amazon.com/eks/home#/clusters[] .
+. Dans le volet de navigation de gauche, sélectionnez *Clusters*.
+. Sélectionnez le nom du cluster pour lequel vous souhaitez mettre à jour le module complémentaire NetApp Trident CSI.
+. Sélectionnez l'onglet *Modules complémentaires*.
+. Sélectionnez * Trident by NetApp* puis sélectionnez *Modifier*.
+. Sur la page *Configurer Trident by NetApp*, procédez comme suit :
++
+.. Sélectionnez la *Version* que vous souhaitez utiliser.
+.. Développez la section *Paramètres de configuration optionnels* et modifiez-les selon vos besoins.
+.. Sélectionnez *Enregistrer les modifications*.
+
+
+
+
+--
+.AWS CLI
+--
+L'exemple suivant met à jour le module complémentaire EKS :
+
+[source, console]
+----
+aws eks update-addon --cluster-name <eks_cluster_name> --addon-name netapp_trident-operator --addon-version v25.6.0-eksbuild.1 \
+  --service-account-role-arn <role-ARN> --resolve-conflict preserve \
+  --configuration-values “{\"cloudIdentity\": \"'eks.amazonaws.com/role-arn: <role ARN>'\"}"
+----
+--
+.eksctl
+--
+* Vérifiez la version actuelle de votre module complémentaire FSxN Trident CSI.  Remplacer `my-cluster` avec le nom de votre cluster.
++
+[source, console]
+----
+eksctl get addon --name netapp_trident-operator --cluster my-cluster
+----
++
+*Exemple de résultat :*
+
+
+
+[listing]
+----
+NAME                        VERSION             STATUS    ISSUES    IAMROLE    UPDATE AVAILABLE    CONFIGURATION VALUES
+netapp_trident-operator    v25.6.0-eksbuild.1    ACTIVE    0       {"cloudIdentity":"'eks.amazonaws.com/role-arn: arn:aws:iam::139763910815:role/AmazonEKS_FSXN_CSI_DriverRole'"}
+----
+* Mettez à jour le module complémentaire avec la version renvoyée sous MISE À JOUR DISPONIBLE dans le résultat de l'étape précédente.
++
+[source, console]
+----
+eksctl update addon --name netapp_trident-operator --version v25.6.0-eksbuild.1 --cluster my-cluster --force
+----
+
+
+Si vous retirez le `--force` Si une option et l'un des paramètres du module complémentaire Amazon EKS entrent en conflit avec vos paramètres existants, la mise à jour du module complémentaire Amazon EKS échoue ; vous recevez un message d'erreur pour vous aider à résoudre le conflit.  Avant de spécifier cette option, assurez-vous que le module complémentaire Amazon EKS ne gère pas des paramètres que vous devez gérer, car ces paramètres seront écrasés par cette option.  Pour plus d'informations sur les autres options de ce paramètre, consultezlink:https://eksctl.io/usage/addons/["Modules complémentaires"] .  Pour plus d'informations sur la gestion des champs Amazon EKS Kubernetes, consultezlink:https://docs.aws.amazon.com/eks/latest/userguide/kubernetes-field-management.html["Gestion des champs Kubernetes"] .
+
+--
+====
+
+
+=== Désinstallez/supprimez le module complémentaire Trident EKS.
+
+Vous avez deux options pour supprimer un module complémentaire Amazon EKS :
+
+* *Conserver les logiciels complémentaires sur votre cluster* – Cette option supprime la gestion des paramètres par Amazon EKS.  Cela supprime également la possibilité pour Amazon EKS de vous informer des mises à jour et de mettre à jour automatiquement le module complémentaire Amazon EKS après que vous ayez lancé une mise à jour.  Toutefois, il préserve les logiciels complémentaires sur votre cluster.  Cette option transforme l'extension en une installation autogérée, plutôt qu'en une extension Amazon EKS.  Avec cette option, l'extension ne nécessite aucune interruption de service.  Conservez le `--preserve` option dans la commande pour conserver le module complémentaire.
+* *Supprimez complètement le logiciel complémentaire de votre cluster* – NetApp recommande de supprimer le module complémentaire Amazon EKS de votre cluster uniquement si aucune ressource de votre cluster n'en dépend.  Retirez le `--preserve` l'option de l' `delete` commande pour supprimer l'extension.
+
+
+
+NOTE: Si le module complémentaire est associé à un compte IAM, ce compte IAM n'est pas supprimé.
+
+[role="tabbed-block"]
+====
+.Console de gestion
+--
+. Ouvrez la console Amazon EKS à https://console.aws.amazon.com/eks/home#/clusters[] .
+. Dans le volet de navigation de gauche, sélectionnez *Clusters*.
+. Sélectionnez le nom du cluster pour lequel vous souhaitez supprimer le module complémentaire NetApp Trident CSI.
+. Sélectionnez l'onglet *Modules complémentaires* puis * Trident by NetApp*.
+. Sélectionnez *Supprimer*.
+. Dans la boîte de dialogue *Confirmation de suppression de netapp_trident-operator*, procédez comme suit :
++
+.. Si vous souhaitez qu'Amazon EKS cesse de gérer les paramètres de l'extension, sélectionnez *Conserver sur le cluster*.  Faites ceci si vous souhaitez conserver le logiciel complémentaire sur votre cluster afin de pouvoir gérer vous-même tous les paramètres de ce module.
+.. Saisissez *netapp_trident-operator*.
+.. Sélectionnez *Supprimer*.
+
+
+
+
+--
+.AWS CLI
+--
+Remplacer `my-cluster` avec le nom de votre cluster, puis exécutez la commande suivante.
+
+[source, console]
+----
+aws eks delete-addon --cluster-name my-cluster --addon-name netapp_trident-operator --preserve
+----
+--
+.eksctl
+--
+La commande suivante désinstalle le module complémentaire Trident EKS :
+
+[source, console]
+----
+eksctl delete addon --cluster K8s-arm --name netapp_trident-operator
+----
+--
+====
