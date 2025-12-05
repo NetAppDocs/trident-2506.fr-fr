@@ -14,7 +14,7 @@ summary: Si votre environnement répond aux exigences, vous pouvez suivre ces é
 
 
 [role="lead"]
-Si votre environnement répond aux exigences de Trident Protect, vous pouvez suivre ces étapes pour installer Trident Protect sur votre cluster.  Vous pouvez obtenir Trident Protect auprès de NetApp ou l'installer à partir de votre propre registre privé.  L'installation à partir d'un registre privé est utile si votre cluster ne peut pas accéder à Internet.
+Si votre environnement répond aux exigences de Trident Protect, vous pouvez suivre ces étapes pour installer Trident Protect sur votre cluster. Vous pouvez obtenir Trident Protect auprès de NetApp ou l'installer à partir de votre propre registre privé. L'installation à partir d'un registre privé est utile si votre cluster ne peut pas accéder à Internet.
 
 
 
@@ -31,7 +31,7 @@ Si votre environnement répond aux exigences de Trident Protect, vous pouvez sui
 ----
 helm repo add netapp-trident-protect https://netapp.github.io/trident-protect-helm-chart
 ----
-. Utilisez Helm pour installer Trident Protect.  Remplacer `<name-of-cluster>` avec un nom de cluster, qui sera attribué au cluster et utilisé pour identifier les sauvegardes et les instantanés du cluster :
+. Utilisez Helm pour installer Trident Protect. Remplacer `<name-of-cluster>` avec un nom de cluster, qui sera attribué au cluster et utilisé pour identifier les sauvegardes et les instantanés du cluster :
 +
 [source, console]
 ----
@@ -42,7 +42,7 @@ helm install trident-protect netapp-trident-protect/trident-protect --set cluste
 --
 .Installez Trident Protect à partir d'un registre privé
 --
-Vous pouvez installer Trident Protect à partir d'un registre d'images privé si votre cluster Kubernetes ne peut pas accéder à Internet.  Dans ces exemples, remplacez les valeurs entre crochets par les informations provenant de votre environnement :
+Vous pouvez installer Trident Protect à partir d'un registre d'images privé si votre cluster Kubernetes ne peut pas accéder à Internet. Dans ces exemples, remplacez les valeurs entre crochets par les informations provenant de votre environnement :
 
 .Étapes
 . Téléchargez les images suivantes sur votre machine locale, mettez à jour les étiquettes, puis envoyez-les vers votre registre privé :
@@ -78,7 +78,7 @@ docker tag netapp/controller:25.06.0 <private-registry-url>/controller:25.06.0
 ----
 docker push <private-registry-url>/controller:25.06.0
 ----
-. Créez l'espace de noms du système de protection Trident :
+. Créez l'espace de noms système Trident Protect :
 +
 [source, console]
 ----
@@ -102,7 +102,7 @@ kubectl create secret docker-registry regcred --docker-username=<registry-userna
 ----
 helm repo add netapp-trident-protect https://netapp.github.io/trident-protect-helm-chart
 ----
-. Créez un fichier nommé `protectValues.yaml` .  Assurez-vous qu'il contienne les paramètres de protection Trident suivants :
+. Créez un fichier nommé `protectValues.yaml` . Assurez-vous qu'il contienne les paramètres Trident Protect suivants :
 +
 [source, yaml]
 ----
@@ -124,7 +124,7 @@ webhooksCleanup:
   imagePullSecrets:
     - name: regcred
 ----
-. Utilisez Helm pour installer Trident Protect.  Remplacer `<name_of_cluster>` avec un nom de cluster, qui sera attribué au cluster et utilisé pour identifier les sauvegardes et les instantanés du cluster :
+. Utilisez Helm pour installer Trident Protect. Remplacer `<name_of_cluster>` avec un nom de cluster, qui sera attribué au cluster et utilisé pour identifier les sauvegardes et les instantanés du cluster :
 +
 [source, console]
 ----

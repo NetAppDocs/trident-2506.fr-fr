@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: trident-protect/trident-protect-restore-apps.html 
 keywords: trident, protect, restore, data, backup 
-summary: 'Vous pouvez utiliser Trident Protect pour restaurer votre application à partir d"un instantané ou d"une sauvegarde.  La restauration à partir d"un instantané existant sera plus rapide lors de la restauration de l"application sur le même cluster.' 
+summary: 'Vous pouvez utiliser Trident Protect pour restaurer votre application à partir d"un instantané ou d"une sauvegarde. La restauration à partir d"un instantané existant sera plus rapide lors de la restauration de l"application sur le même cluster.' 
 ---
 = Restaurez les applications à l'aide de Trident Protect
 :hardbreaks:
@@ -14,13 +14,13 @@ summary: 'Vous pouvez utiliser Trident Protect pour restaurer votre application 
 
 
 [role="lead"]
-Vous pouvez utiliser Trident Protect pour restaurer votre application à partir d'un instantané ou d'une sauvegarde.  La restauration à partir d'un instantané existant sera plus rapide lors de la restauration de l'application sur le même cluster.
+Vous pouvez utiliser Trident Protect pour restaurer votre application à partir d'un instantané ou d'une sauvegarde. La restauration à partir d'un instantané existant sera plus rapide lors de la restauration de l'application sur le même cluster.
 
 [NOTE]
 ====
 * Lorsque vous restaurez une application, tous les points d'exécution configurés pour celle-ci sont restaurés avec elle.  Si un point d'entrée d'exécution post-restauration est présent, il s'exécute automatiquement dans le cadre de l'opération de restauration.
 * La restauration à partir d'une sauvegarde vers un espace de noms différent ou vers l'espace de noms d'origine est prise en charge pour les volumes qtree.  Cependant, la restauration à partir d'un instantané vers un espace de noms différent ou vers l'espace de noms d'origine n'est pas prise en charge pour les volumes qtree.
-* Vous pouvez utiliser des paramètres avancés pour personnaliser les opérations de restauration. Pour en savoir plus, consultez link:../trident-protect/trident-protect-restore-settings.html["Utiliser les paramètres avancés de restauration de protection Trident"].
+* Vous pouvez utiliser des paramètres avancés pour personnaliser les opérations de restauration. Pour en savoir plus, consultez link:../trident-protect/trident-protect-restore-settings.html["Utilisez les paramètres de restauration avancés de Trident Protect"].
 
 
 ====
@@ -28,7 +28,7 @@ Vous pouvez utiliser Trident Protect pour restaurer votre application à partir 
 
 == Restaurer à partir d'une sauvegarde vers un espace de noms différent
 
-Lorsque vous restaurez une sauvegarde dans un espace de noms différent à l'aide d'une ressource personnalisée BackupRestore, Trident Protect restaure l'application dans un nouvel espace de noms et crée une ressource personnalisée d'application pour l'application restaurée.  Pour protéger l'application restaurée, créez des sauvegardes ou des instantanés à la demande, ou établissez un calendrier de protection.
+Lorsque vous restaurez une sauvegarde dans un espace de noms différent à l'aide d'une ressource personnalisée BackupRestore, Trident Protect restaure l'application dans un nouvel espace de noms et crée une ressource personnalisée d'application pour l'application restaurée. Pour protéger l'application restaurée, créez des sauvegardes ou des instantanés à la demande, ou établissez un calendrier de protection.
 
 
 NOTE: La restauration d'une sauvegarde dans un espace de noms différent contenant des ressources existantes ne modifiera pas les ressources qui partagent les mêmes noms que celles de la sauvegarde.  Pour restaurer toutes les ressources de la sauvegarde, supprimez et recréez l'espace de noms cible, ou restaurez la sauvegarde dans un nouvel espace de noms.
@@ -41,7 +41,7 @@ Assurez-vous que la durée d'expiration du jeton de session AWS est suffisante p
 
 
 
-NOTE: Lorsque vous restaurez des sauvegardes à l'aide de Kopia comme outil de transfert de données, vous pouvez éventuellement spécifier des annotations dans le CR ou utiliser l'interface de ligne de commande pour contrôler le comportement du stockage temporaire utilisé par Kopia. Se référer à https://kopia.io/docs/getting-started/["Documentation Kopia"^] pour plus d'informations sur les options que vous pouvez configurer.  Utilisez le `tridentctl-protect create --help` commande pour plus d'informations sur la spécification des annotations avec l'interface de ligne de commande Trident protect.
+NOTE: Lorsque vous restaurez des sauvegardes à l'aide de Kopia comme outil de transfert de données, vous pouvez éventuellement spécifier des annotations dans le CR ou utiliser l'interface de ligne de commande pour contrôler le comportement du stockage temporaire utilisé par Kopia. Se référer à https://kopia.io/docs/getting-started/["Documentation Kopia"^] pour plus d'informations sur les options que vous pouvez configurer. Utilisez le `tridentctl-protect create --help` commande pour plus d'informations sur la spécification des annotations avec l'interface de ligne de commande Trident Protect.
 
 [role="tabbed-block"]
 ====
@@ -79,7 +79,7 @@ spec:
 . (_Facultatif_) Si vous devez sélectionner uniquement certaines ressources de l'application à restaurer, ajoutez un filtrage qui inclut ou exclut les ressources marquées par des étiquettes particulières :
 +
 
-NOTE: Trident Protect sélectionne automatiquement certaines ressources en raison de leur relation avec les ressources que vous sélectionnez.  Par exemple, si vous sélectionnez une ressource de revendication de volume persistant et qu'elle possède un pod associé, Trident Protect restaurera également le pod associé.
+NOTE: Trident Protect sélectionne automatiquement certaines ressources en raison de leur relation avec les ressources que vous sélectionnez. Par exemple, si vous sélectionnez une ressource de revendication de volume persistant et qu'elle possède un pod associé, Trident Protect restaurera également le pod associé.
 
 +
 ** *resourceFilter.resourceSelectionCriteria* : (Requis pour le filtrage) Utiliser `Include` ou `Exclude` inclure ou exclure une ressource définie dans resourceMatchers.  Ajoutez les paramètres resourceMatchers suivants pour définir les ressources à inclure ou à exclure :
@@ -160,7 +160,7 @@ Assurez-vous que la durée d'expiration du jeton de session AWS est suffisante p
 
 
 
-NOTE: Lorsque vous restaurez des sauvegardes à l'aide de Kopia comme outil de transfert de données, vous pouvez éventuellement spécifier des annotations dans le CR ou utiliser l'interface de ligne de commande pour contrôler le comportement du stockage temporaire utilisé par Kopia. Se référer à https://kopia.io/docs/getting-started/["Documentation Kopia"^] pour plus d'informations sur les options que vous pouvez configurer.  Utilisez le `tridentctl-protect create --help` commande pour plus d'informations sur la spécification des annotations avec l'interface de ligne de commande Trident protect.
+NOTE: Lorsque vous restaurez des sauvegardes à l'aide de Kopia comme outil de transfert de données, vous pouvez éventuellement spécifier des annotations dans le CR ou utiliser l'interface de ligne de commande pour contrôler le comportement du stockage temporaire utilisé par Kopia. Se référer à https://kopia.io/docs/getting-started/["Documentation Kopia"^] pour plus d'informations sur les options que vous pouvez configurer. Utilisez le `tridentctl-protect create --help` commande pour plus d'informations sur la spécification des annotations avec l'interface de ligne de commande Trident Protect.
 
 [role="tabbed-block"]
 ====
@@ -199,7 +199,7 @@ spec:
 . (_Facultatif_) Si vous devez sélectionner uniquement certaines ressources de l'application à restaurer, ajoutez un filtrage qui inclut ou exclut les ressources marquées par des étiquettes particulières :
 +
 
-NOTE: Trident Protect sélectionne automatiquement certaines ressources en raison de leur relation avec les ressources que vous sélectionnez.  Par exemple, si vous sélectionnez une ressource de revendication de volume persistant et qu'elle possède un pod associé, Trident Protect restaurera également le pod associé.
+NOTE: Trident Protect sélectionne automatiquement certaines ressources en raison de leur relation avec les ressources que vous sélectionnez. Par exemple, si vous sélectionnez une ressource de revendication de volume persistant et qu'elle possède un pod associé, Trident Protect restaurera également le pod associé.
 
 +
 ** *resourceFilter.resourceSelectionCriteria* : (Requis pour le filtrage) Utiliser `Include` ou `Exclude` inclure ou exclure une ressource définie dans resourceMatchers.  Ajoutez les paramètres resourceMatchers suivants pour définir les ressources à inclure ou à exclure :
@@ -272,14 +272,14 @@ tridentctl-protect create backupinplacerestore <my_restore_name> \
 Vous pouvez restaurer une sauvegarde sur un autre cluster en cas de problème avec le cluster d'origine.
 
 
-NOTE: Lorsque vous restaurez des sauvegardes à l'aide de Kopia comme outil de transfert de données, vous pouvez éventuellement spécifier des annotations dans le CR ou utiliser l'interface de ligne de commande pour contrôler le comportement du stockage temporaire utilisé par Kopia. Se référer à https://kopia.io/docs/getting-started/["Documentation Kopia"^] pour plus d'informations sur les options que vous pouvez configurer.  Utilisez le `tridentctl-protect create --help` commande pour plus d'informations sur la spécification des annotations avec l'interface de ligne de commande Trident protect.
+NOTE: Lorsque vous restaurez des sauvegardes à l'aide de Kopia comme outil de transfert de données, vous pouvez éventuellement spécifier des annotations dans le CR ou utiliser l'interface de ligne de commande pour contrôler le comportement du stockage temporaire utilisé par Kopia. Se référer à https://kopia.io/docs/getting-started/["Documentation Kopia"^] pour plus d'informations sur les options que vous pouvez configurer. Utilisez le `tridentctl-protect create --help` commande pour plus d'informations sur la spécification des annotations avec l'interface de ligne de commande Trident Protect.
 
 .Avant de commencer
 Assurez-vous que les conditions préalables suivantes sont remplies :
 
-* Le cluster de destination possède la protection Trident installée.
+* Le cluster de destination possède Trident Protect installé.
 * Le cluster de destination a accès au chemin du compartiment du même AppVault que le cluster source, où la sauvegarde est stockée.
-* Assurez-vous que votre environnement local peut se connecter au compartiment de stockage d'objets défini dans la ressource personnalisée AppVault lors de l'exécution. `tridentctl-protect get appvaultcontent` commande. Si les restrictions réseau empêchent l’accès, exécutez plutôt l’interface de ligne de commande Trident Protect à partir d’un pod sur le cluster de destination.
+* Assurez-vous que votre environnement local peut se connecter au compartiment de stockage d'objets défini dans la ressource personnalisée AppVault lors de l'exécution. `tridentctl-protect get appvaultcontent` commande. Si des restrictions réseau empêchent l'accès, exécutez plutôt l'interface de ligne de commande Trident Protect depuis un pod sur le cluster de destination.
 * Assurez-vous que la durée de validité du jeton de session AWS est suffisante pour toute opération de restauration de longue durée.  Si le jeton expire pendant l'opération de restauration, celle-ci peut échouer.
 +
 ** Se référer à https://docs.aws.amazon.com/STS/latest/APIReference/API_GetSessionToken.html["Documentation AWS API"^] pour plus d'informations sur la vérification de l'expiration du jeton de session actuel.
@@ -395,7 +395,7 @@ tridentctl-protect create backuprestore <restore_name> \
 
 == Restaurer à partir d'un instantané vers un espace de noms différent
 
-Vous pouvez restaurer des données à partir d'un instantané à l'aide d'un fichier de ressources personnalisé (CR), soit dans un espace de noms différent, soit dans l'espace de noms source d'origine.  Lorsque vous restaurez un instantané dans un espace de noms différent à l'aide d'une ressource personnalisée SnapshotRestore, Trident Protect restaure l'application dans un nouvel espace de noms et crée une ressource personnalisée d'application pour l'application restaurée.  Pour protéger l'application restaurée, créez des sauvegardes ou des instantanés à la demande, ou établissez un calendrier de protection.
+Vous pouvez restaurer des données à partir d'un instantané à l'aide d'un fichier de ressources personnalisé (CR), soit dans un espace de noms différent, soit dans l'espace de noms source d'origine. Lorsque vous restaurez un instantané dans un espace de noms différent à l'aide d'une ressource personnalisée SnapshotRestore, Trident Protect restaure l'application dans un nouvel espace de noms et crée une ressource personnalisée d'application pour l'application restaurée. Pour protéger l'application restaurée, créez des sauvegardes ou des instantanés à la demande, ou établissez un calendrier de protection.
 
 
 NOTE: SnapshotRestore prend en charge `spec.storageClassMapping` cet attribut est valable uniquement lorsque les classes de stockage source et de destination utilisent le même système de stockage dorsal.  Si vous tentez de restaurer un `StorageClass` Si le système de stockage utilisé est différent, l'opération de restauration échouera.
@@ -443,7 +443,7 @@ spec:
 . (_Facultatif_) Si vous devez sélectionner uniquement certaines ressources de l'application à restaurer, ajoutez un filtrage qui inclut ou exclut les ressources marquées par des étiquettes particulières :
 +
 
-NOTE: Trident Protect sélectionne automatiquement certaines ressources en raison de leur relation avec les ressources que vous sélectionnez.  Par exemple, si vous sélectionnez une ressource de revendication de volume persistant et qu'elle possède un pod associé, Trident Protect restaurera également le pod associé.
+NOTE: Trident Protect sélectionne automatiquement certaines ressources en raison de leur relation avec les ressources que vous sélectionnez. Par exemple, si vous sélectionnez une ressource de revendication de volume persistant et qu'elle possède un pod associé, Trident Protect restaurera également le pod associé.
 
 +
 ** *resourceFilter.resourceSelectionCriteria* : (Requis pour le filtrage) Utiliser `Include` ou `Exclude` inclure ou exclure une ressource définie dans resourceMatchers.  Ajoutez les paramètres resourceMatchers suivants pour définir les ressources à inclure ou à exclure :
@@ -565,7 +565,7 @@ spec:
 . (_Facultatif_) Si vous devez sélectionner uniquement certaines ressources de l'application à restaurer, ajoutez un filtrage qui inclut ou exclut les ressources marquées par des étiquettes particulières :
 +
 
-NOTE: Trident Protect sélectionne automatiquement certaines ressources en raison de leur relation avec les ressources que vous sélectionnez.  Par exemple, si vous sélectionnez une ressource de revendication de volume persistant et qu'elle possède un pod associé, Trident Protect restaurera également le pod associé.
+NOTE: Trident Protect sélectionne automatiquement certaines ressources en raison de leur relation avec les ressources que vous sélectionnez. Par exemple, si vous sélectionnez une ressource de revendication de volume persistant et qu'elle possède un pod associé, Trident Protect restaurera également le pod associé.
 
 +
 ** *resourceFilter.resourceSelectionCriteria* : (Requis pour le filtrage) Utiliser `Include` ou `Exclude` inclure ou exclure une ressource définie dans resourceMatchers.  Ajoutez les paramètres resourceMatchers suivants pour définir les ressources à inclure ou à exclure :

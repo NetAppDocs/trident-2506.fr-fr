@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: trident-protect/trident-protect-cli.html 
 keywords: trident, protect, command line utility, cli, netapp, custom, resources 
-summary: Vous pouvez utiliser la commande protectctl pour créer et interagir avec des ressources personnalisées de protection Trident . 
+summary: Vous pouvez utiliser la commande protectctl pour créer des ressources personnalisées Trident Protect et interagir avec elles. 
 ---
 = Installez le plugin CLI Trident Protect
 :hardbreaks:
@@ -14,7 +14,7 @@ summary: Vous pouvez utiliser la commande protectctl pour créer et interagir av
 
 
 [role="lead"]
-Vous pouvez utiliser le plugin de ligne de commande Trident Protect, qui est une extension de Trident. `tridentctl` utilitaire, pour créer et interagir avec les ressources personnalisées Trident Protect (CR).
+Vous pouvez utiliser le plugin en ligne de commande Trident Protect, qui est une extension de Trident. `tridentctl` utilitaire, pour créer et interagir avec les ressources personnalisées (CR) de Trident Protect.
 
 
 

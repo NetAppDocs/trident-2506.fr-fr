@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: trident-protect/trident-protect-use-execution-hooks.html 
 keywords: trident, protect, execution hooks 
-summary: 'Vous pouvez créer un point d"exécution personnalisé pour une application utilisant Trident Protect.  Vous devez disposer des autorisations de propriétaire, d"administrateur ou de membre pour créer des points d"exécution.' 
+summary: 'Vous pouvez créer un point d"exécution personnalisé pour une application utilisant Trident Protect. Vous devez disposer des autorisations de propriétaire, d"administrateur ou de membre pour créer des points d"exécution.' 
 ---
-= Gérer les hooks d'exécution de protection Trident
+= Gérer les hooks d'exécution de Trident Protect
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -96,7 +96,7 @@ Visitez le https://github.com/NetApp/Verda["Projet GitHub NetApp Verda"] pour t�
 
 == Créer un point d'accroche d'exécution
 
-Vous pouvez créer un point d'exécution personnalisé pour une application utilisant Trident Protect.  Vous devez disposer des autorisations de propriétaire, d'administrateur ou de membre pour créer des points d'exécution.
+Vous pouvez créer un hook d'exécution personnalisé pour une application en utilisant . Vous devez disposer des autorisations de propriétaire, d'administrateur ou de membre pour créer des points d'exécution.
 
 [role="tabbed-block"]
 ====

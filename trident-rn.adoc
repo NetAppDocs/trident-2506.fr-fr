@@ -139,7 +139,7 @@ NOTE: Cette fonctionnalité est expérimentale et prend actuellement en charge d
 
 === Protection Trident
 
-NetApp Trident Protect fournit des fonctionnalités avancées de gestion des données d'application qui améliorent la fonctionnalité et la disponibilité des applications Kubernetes avec état prises en charge par les systèmes de stockage NetApp ONTAP et le provisionneur de stockage NetApp Trident CSI.
+NetApp Trident Protect offre des fonctionnalités avancées de gestion des données d'application qui améliorent la fonctionnalité et la disponibilité des applications Kubernetes avec état, prises en charge par les systèmes de stockage NetApp ONTAP et le provisionneur de stockage NetApp Trident CSI.
 
 
 
@@ -245,13 +245,13 @@ NetApp Trident Protect fournit des fonctionnalités avancées de gestion des don
 
 === Protection Trident
 
-NetApp Trident Protect fournit des fonctionnalités avancées de gestion des données d'application qui améliorent la fonctionnalité et la disponibilité des applications Kubernetes avec état prises en charge par les systèmes de stockage NetApp ONTAP et le provisionneur de stockage NetApp Trident CSI.
+NetApp Trident Protect offre des fonctionnalités avancées de gestion des données d'application qui améliorent la fonctionnalité et la disponibilité des applications Kubernetes avec état, prises en charge par les systèmes de stockage NetApp ONTAP et le provisionneur de stockage NetApp Trident CSI.
 
 
 
 ==== Améliorations
 
-* Ajout de la prise en charge de la sauvegarde et de la restauration pour les machines virtuelles KubeVirt / OpenShift Virtualization pour les modes de stockage volumeMode : File et volumeMode : Block (périphérique brut).  Cette prise en charge est compatible avec tous les pilotes Trident et améliore les fonctionnalités de protection existantes lors de la réplication du stockage à l'aide de NetApp SnapMirror avec Trident Protect.
+* Ajout de la prise en charge de la sauvegarde et de la restauration pour les machines virtuelles KubeVirt / OpenShift Virtualization pour les modes de stockage volumeMode : File et volumeMode : Block (périphérique brut). Cette prise en charge est compatible avec tous les pilotes Trident et améliore les fonctionnalités de protection existantes lors de la réplication du stockage à l'aide de NetApp SnapMirror avec Trident Protect.
 * Ajout de la possibilité de contrôler le comportement de gel au niveau de l'application pour les environnements Kubevirt.
 * Ajout de la prise en charge de la configuration des connexions proxy AutoSupport .
 * Ajout de la possibilité de définir un secret pour le chiffrement du transporteur de données (Kopia / Restic).
@@ -327,7 +327,7 @@ NetApp Trident Protect fournit des fonctionnalités avancées de gestion des don
 ** Reprise après sinistre
 ** Mobilité des applications
 +
-link:./trident-protect/learn-about-trident-protect.html["Apprenez-en davantage sur la protection Trident"].
+link:./trident-protect/learn-about-trident-protect.html["Apprenez-en davantage sur Trident Protect"].
 
 
 

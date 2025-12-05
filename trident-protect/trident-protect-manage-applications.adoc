@@ -4,7 +4,7 @@ permalink: trident-protect/trident-protect-manage-applications.html
 keywords: appvault, data protection, custom resource, namespace, application, cluster 
 summary: 'Vous pouvez informer Trident Protect d"une application que vous souhaitez gérer en créant une demande de changement d"application et une demande de changement AppVault associée.' 
 ---
-= Définir une application de gestion avec Trident Protect
+= Définissez une application de gestion avec Trident Protect
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -20,13 +20,13 @@ Vous pouvez définir une application que vous souhaitez gérer avec Trident Prot
 
 == Créer une demande de changement AppVault
 
-Vous devez créer une ressource personnalisée AppVault qui sera utilisée lors des opérations de protection des données sur l'application, et cette ressource personnalisée AppVault doit résider sur le cluster où Trident Protect est installé.  La demande de changement (CR) AppVault est spécifique à votre environnement ; pour des exemples de CR AppVault, reportez-vous àlink:trident-protect-appvault-custom-resources.html["Ressources personnalisées AppVault."]
+Vous devez créer une ressource personnalisée AppVault qui sera utilisée lors des opérations de protection des données sur l'application, et cette ressource personnalisée AppVault doit résider sur le cluster où Trident Protect est installé. La demande de changement (CR) AppVault est spécifique à votre environnement ; pour des exemples de CR AppVault, reportez-vous àlink:trident-protect-appvault-custom-resources.html["Ressources personnalisées AppVault."]
 
 
 
 == Définir une application
 
-Vous devez définir chaque application que vous souhaitez gérer avec Trident Protect.  Vous pouvez définir une application de gestion soit en créant manuellement une demande de changement d'application, soit en utilisant l'interface de ligne de commande Trident Protect.
+Vous devez définir chaque application que vous souhaitez gérer avec Trident Protect. Vous pouvez définir une application de gestion soit en créant manuellement une demande de changement d'application, soit en utilisant l'interface de ligne de commande (CLI) de Trident Protect.
 
 [role="tabbed-block"]
 ====
@@ -46,7 +46,7 @@ Vous devez définir chaque application que vous souhaitez gérer avec Trident Pr
 **** *labelSelector*: (_Optionnel_) Filtre les ressources à portée de cluster en fonction de leurs étiquettes.
 
 
-*** *metadata.annotations.protect.trident.netapp.io/skip-vm-freeze*: (_Optional_) Cette annotation s'applique uniquement aux applications définies à partir de machines virtuelles, comme dans les environnements KubeVirt, où les gels du système de fichiers se produisent avant les instantanés.  Indiquez si cette application peut écrire sur le système de fichiers lors d'un instantané.  Si cette option est activée (true), l'application ignore le paramètre global et peut écrire sur le système de fichiers pendant la création d'un instantané.  Si cette option est désactivée, l'application ignore le paramètre global et le système de fichiers est figé lors de la création d'un instantané.  Si cette annotation est spécifiée mais que l'application ne comporte aucune machine virtuelle dans sa définition, elle est ignorée.  Sauf indication contraire, la demande suit la procédurelink:trident-protect-requirements.html#protecting-data-with-kubevirt-vms["Paramètre de gel de protection Trident global"] .
+*** *metadata.annotations.protect.trident.netapp.io/skip-vm-freeze*: (_Optional_) Cette annotation s'applique uniquement aux applications définies à partir de machines virtuelles, comme dans les environnements KubeVirt, où les gels du système de fichiers se produisent avant les instantanés. Indiquez si cette application peut écrire sur le système de fichiers lors d'un instantané. Si cette option est activée (true), l'application ignore le paramètre global et peut écrire sur le système de fichiers pendant la création d'un instantané. Si cette option est désactivée, l'application ignore le paramètre global et le système de fichiers est figé lors de la création d'un instantané. Si cette annotation est spécifiée mais que l'application ne comporte aucune machine virtuelle dans sa définition, elle est ignorée. Sauf indication contraire, la demande suit la procédurelink:trident-protect-requirements.html#protecting-data-with-kubevirt-vms["Paramètre de gel global Trident Protect"] .
 +
 [NOTE]
 ====
@@ -153,7 +153,7 @@ kubectl apply -f maria-app.yaml
 .Étapes
 . Créez et appliquez la définition de l'application en utilisant l'un des exemples suivants, en remplaçant les valeurs entre crochets par les informations de votre environnement.  Vous pouvez inclure des espaces de noms et des ressources dans la définition de l'application en utilisant des listes séparées par des virgules avec les arguments indiqués dans les exemples.
 +
-Vous pouvez, si vous le souhaitez, utiliser une annotation lors de la création d'une application pour spécifier si celle-ci peut écrire sur le système de fichiers pendant la prise d'un instantané.  Ceci ne s'applique qu'aux applications définies à partir de machines virtuelles, comme dans les environnements KubeVirt, où des blocages du système de fichiers se produisent avant la création des instantanés.  Si vous définissez l'annotation sur `true` L'application ignore le paramètre global et peut écrire sur le système de fichiers pendant la création d'un instantané.  Si vous le configurez à `false` L'application ignore alors le paramètre global et le système de fichiers est figé lors de la prise d'un instantané.  Si vous utilisez l'annotation mais que l'application ne comporte aucune machine virtuelle dans sa définition, l'annotation est ignorée.  Si vous n'utilisez pas l'annotation, l'application suit le comportement attendu.link:trident-protect-requirements.html#protecting-data-with-kubevirt-vms["Paramètre de gel de protection Trident global"] .
+Vous pouvez, si vous le souhaitez, utiliser une annotation lors de la création d'une application pour spécifier si celle-ci peut écrire sur le système de fichiers pendant la prise d'un instantané. Ceci ne s'applique qu'aux applications définies à partir de machines virtuelles, comme dans les environnements KubeVirt, où des blocages du système de fichiers se produisent avant la création des instantanés. Si vous définissez l'annotation sur `true` L'application ignore le paramètre global et peut écrire sur le système de fichiers pendant la création d'un instantané. Si vous le configurez à `false` L'application ignore alors le paramètre global et le système de fichiers est figé lors de la prise d'un instantané. Si vous utilisez l'annotation mais que l'application ne comporte aucune machine virtuelle dans sa définition, l'annotation est ignorée. Si vous n'utilisez pas l'annotation, l'application suit le comportement attendu.link:trident-protect-requirements.html#protecting-data-with-kubevirt-vms["Paramètre de gel global Trident Protect"] .
 
 +
 Pour spécifier l'annotation lorsque vous utilisez l'interface de ligne de commande pour créer une application, vous pouvez utiliser la `--annotation` drapeau.

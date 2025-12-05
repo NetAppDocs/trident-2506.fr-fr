@@ -2,11 +2,11 @@
 section: trident-protect
 title: Protégez vos applications avec Trident Protect
 entries:
-- title: Découvrez la protection Trident
+- title: Découvrez Trident Protect
   url: "/trident-protect/learn-about-trident-protect.html"
 - title: Installer Trident Protect
   entries:
-  - title: Exigences de protection Trident
+  - title: Exigences de Trident Protect
     url: "/trident-protect/trident-protect-requirements.html"
   - title: Installer Trident Protect
     url: "/trident-protect/trident-protect-installation.html"
@@ -14,15 +14,15 @@ entries:
     url: "/trident-protect/trident-protect-cli.html"
   - title: Personnaliser l'installation de Trident Protect
     url: "/trident-protect/trident-protect-customize-installation.html"
-- title: Gérer Trident protège
+- title: Gérer Trident Protect
   entries:
   - title: Gérer l'autorisation et le contrôle d'accès
     url: "/trident-protect/manage-authorization-access-control.html"
-  - title: Le système de surveillance Trident protège les ressources
+  - title: Surveiller les ressources de Trident Protect
     url: "/trident-protect/monitor-trident-protect-resources.html"
   - title: Générer un ensemble de support Trident Protect
     url: "/trident-protect/trident-protect-generate-support-bundle.html"
-  - title: Amélioration de la protection Trident
+  - title: Amélioration de Trident Protect
     url: "/trident-protect/trident-protect-upgrade.html"
 - title: Gérer et protéger les applications
   entries:
