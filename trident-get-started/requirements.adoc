@@ -174,14 +174,15 @@ Non
 
 Bien que Trident ne prenne pas officiellement en charge de systèmes d'exploitation spécifiques, les suivants sont connus pour fonctionner :
 
-* Versions de Red Hat Enterprise Linux CoreOS (RHCOS) prises en charge par OpenShift Container Platform (AMD64 et ARM64)
-* RHEL 8+ (AMD64 et ARM64)
+* Versions de Red Hat Enterprise Linux CoreOS (RHCOS) prises en charge par OpenShift Container Platform sur AMD64 et ARM64
+* Red Hat Enterprise Linux (RHEL) 8 ou version ultérieure sur AMD64 et ARM64
 +
 
 NOTE: NVMe/TCP nécessite RHEL 9 ou une version ultérieure.
 
-* Ubuntu 22.04 ou version ultérieure (AMD64 et ARM64)
+* Ubuntu 22.04 LTS ou version ultérieure sur AMD64 et ARM64
 * Windows Server 2022
+* SUSE Linux Enterprise Server (SLES) 15 ou version ultérieure
 
 
 Par défaut, Trident s'exécute dans un conteneur et fonctionnera donc sur n'importe quel nœud de calcul Linux.  Cependant, ces travailleurs doivent pouvoir monter les volumes fournis par Trident à l'aide du client NFS standard ou de l'initiateur iSCSI, selon les systèmes de stockage utilisés.

@@ -978,10 +978,7 @@
   <block id="443432948b68bb63d707ce7ecc4a021a" category="cell">Topologie CSI</block>
   <block id="af7c8216a3289efe1a298a19c00b8b8c" category="section-title">Systèmes d'exploitation hôtes testés</block>
   <block id="29fce9ae0f476afd36cf3ebf4de1d2a8" category="paragraph">Bien que Trident ne prenne pas officiellement en charge de systèmes d'exploitation spécifiques, les suivants sont connus pour fonctionner :</block>
-  <block id="daa6a182f8035711e9635994f572c7bc" category="list-text">Versions de Red Hat Enterprise Linux CoreOS (RHCOS) prises en charge par OpenShift Container Platform (AMD64 et ARM64)</block>
-  <block id="a3460163c4a2854c79a419dda57ac917" category="list-text">RHEL 8+ (AMD64 et ARM64)</block>
   <block id="8554748be67b956e550de942edae807d" category="admonition">NVMe/TCP nécessite RHEL 9 ou une version ultérieure.</block>
-  <block id="f51a58a0cffb9f9953edce6411578b53" category="list-text">Ubuntu 22.04 ou version ultérieure (AMD64 et ARM64)</block>
   <block id="de547bcab0e20f54ec4d5e95ba44b0b1" category="list-text">Windows Server 2022</block>
   <block id="779639a0216e7a8fd164ee8a7266d8b8" category="paragraph">Par défaut, Trident s'exécute dans un conteneur et fonctionnera donc sur n'importe quel nœud de calcul Linux.  Cependant, ces travailleurs doivent pouvoir monter les volumes fournis par Trident à l'aide du client NFS standard ou de l'initiateur iSCSI, selon les systèmes de stockage utilisés.</block>
   <block id="11ea58814ce429c3e3254a63f8cde7a4" category="paragraph">Le<block ref="c67fd1b99934afa248dfeb285a9a4191" prefix=" " category="inline-code"></block> Cet utilitaire fonctionne également sur n'importe laquelle de ces distributions Linux.</block>
@@ -5843,4 +5840,8 @@
   <block id="70568f333da28442c152ac2e1f71e1a0" category="sidebar">Protégez vos applications avec Trident Protect</block>
   <block id="8545a0d7cdafff8da2dece1a851630dc" category="sidebar">Gérer Trident Protect</block>
   <block id="83ff2dd2ff6a9ee85daa1b0fefef4019" category="sidebar">Gérez les hooks d'exécution avec Trident Protect</block>
+  <block id="01a2f6f3fc3712c00aaaff540b7187f3" category="list-text">Versions de Red Hat Enterprise Linux CoreOS (RHCOS) prises en charge par OpenShift Container Platform sur AMD64 et ARM64</block>
+  <block id="1c93bd59e1abbbe543685399acba3c3b" category="list-text">Red Hat Enterprise Linux (RHEL) 8 ou version ultérieure sur AMD64 et ARM64</block>
+  <block id="d79b838675f4d040c12110c1c22fcf32" category="list-text">Ubuntu 22.04 LTS ou version ultérieure sur AMD64 et ARM64</block>
+  <block id="02869471b3c4ac5c57fb8c2e1d4355dd" category="list-text">SUSE Linux Enterprise Server (SLES) 15 ou version ultérieure</block>
 </blocks>
