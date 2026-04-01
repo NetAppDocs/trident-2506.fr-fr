@@ -798,7 +798,7 @@ Un nouveaulink:https://docs.netapp.com/us-en/trident/trident-reference/pod-secur
 
 == Modifications dans la version 22.04
 
-NetApp améliore et optimise continuellement ses produits et services. Voici quelques-unes des dernières fonctionnalités de Trident.  Pour les versions précédentes, veuillez vous référer à https://docs.netapp.com/us-en/trident/earlier-versions.html["Versions antérieures de la documentation"] .
+NetApp améliore et perfectionne continuellement ses produits et services. Voici quelques-unes des dernières fonctionnalités de Trident. Pour les versions précédentes, consultez les versions antérieures de la documentation.
 
 
 IMPORTANT: Si vous effectuez une mise à niveau depuis une version antérieure de Trident et que vous utilisez Azure NetApp Files,``location`` Le paramètre de configuration est désormais un champ obligatoire et unique.
