@@ -1,6 +1,6 @@
 ---
 sidebar: sidebar 
-permalink: trident-get-started/kubernetes-deploy-tridentctl.html 
+permalink: trident-install/kubernetes-deploy-tridentctl.html 
 keywords: deploy, Trident, methods, tridentctl, windows 
 summary: 'Vous pouvez installer Trident en utilisant `tridentctl` .  Ce processus s"applique aux installations où les images de conteneur requises par Trident sont stockées dans un registre privé ou non.' 
 ---
@@ -35,10 +35,10 @@ Utilisation d'une configuration sans chemins multiples ou utilisation de `find_m
 
 == Installez Trident en utilisant `tridentctl`
 
-Revoirlink:../trident-get-started/kubernetes-deploy.html["aperçu de l'installation"] pour vous assurer que vous avez respecté les prérequis d'installation et sélectionné l'option d'installation appropriée à votre environnement.
+Vérifiez link:../trident-install/kubernetes-deploy.html["aperçu de l'installation"] pour vous assurer que vous avez respecté les prérequis d'installation et sélectionné la bonne option d'installation pour votre environnement.
 
 .Avant de commencer
-Avant de commencer l'installation, connectez-vous à l'hôte Linux et vérifiez qu'il gère un système fonctionnel.link:requirements.html["cluster Kubernetes pris en charge"^] et que vous disposez des privilèges nécessaires.
+Avant de commencer l'installation, connectez-vous à l'hôte Linux et vérifiez qu'il gère un système fonctionnel, link:../trident-get-started/requirements.html["cluster Kubernetes pris en charge"] et que vous disposez des privilèges nécessaires.
 
 
 NOTE: Avec OpenShift, utilisez `oc` au lieu de `kubectl` Dans tous les exemples suivants, connectez-vous d'abord en tant que *system:admin* en exécutant la commande suivante : `oc login -u system:admin` ou `oc login -u kube-admin` .
@@ -151,7 +151,7 @@ trident-controller-679648bd45-cv2mx   6/6     Running   0          5m29s
 trident-node-linux-vgc8n              2/2     Running   0          5m29s
 ----
 
-NOTE: Si l'installation ne se termine pas correctement ou `trident-controller-<generated id>` (`trident-csi-<generated id>` (dans les versions antérieures à la 23.01) n'a pas d'état *En cours d'exécution*, la plateforme n'a pas été installée.  Utiliser `-d` àlink:../troubleshooting.html#troubleshooting-an-unsuccessful-trident-deployment-using-tridentctl["activer le mode débogage"] et résoudre le problème.
+NOTE: Si l'installateur ne se termine pas correctement ou si  `trident-controller-<generated id>` (`trident-csi-<generated id>` dans les versions antérieures à 23.01 n'a pas le statut *Running*, la plateforme n'a pas été installée. Utilisez  `-d` pour link:../troubleshooting.html#unsuccessful-trident-deployment-using-tridentctl["activer le mode débogage"] et résoudre le problème.
 
 
 
@@ -188,7 +188,7 @@ tridentctl install --windows -n trident
 .Forcer le détachement
 [%collapsible]
 ====
-Pour plus d'informations sur le détachement forcé, veuillez consulterlink:..trident-get-started/kubernetes-customize-deploy.html["Personnalisation de l'installation de l'opérateur Trident"] .
+Pour plus d'informations sur le détachement forcé, veuillez vous référer à link:kubernetes-customize-deploy.html["Personnalisation de l'installation de l'opérateur Trident"].
 
 [listing]
 ----

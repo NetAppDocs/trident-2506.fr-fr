@@ -12,7 +12,7 @@ summary: 'Vous pouvez utiliser directement le point de terminaison REST si vous 
 
 
 [role="lead"]
-Alors quelink:tridentctl.html["commandes et options de tridentctl"] sont le moyen le plus simple d'interagir avec l'API REST de Trident , mais vous pouvez utiliser directement le point de terminaison REST si vous préférez.
+Bien que link:../trident-managing-k8s/tridentctl.html["commandes et options de tridentctl"] soit le moyen le plus simple d'interagir avec l'API REST de Trident, vous pouvez utiliser directement le point de terminaison REST si vous préférez.
 
 
 

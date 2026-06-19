@@ -141,7 +141,7 @@ Vous pouvez supprimer un volume partagé entre plusieurs espaces de noms.  Tride
 
 == Utiliser `tridentctl get` interroger les volumes subordonnés
 
-En utilisant le[`tridentctl` utilitaire, vous pouvez exécuter le `get` commande pour obtenir les volumes subordonnés.  Pour plus d'informations, consultez le lien :../trident-reference/tridentctl.html[`tridentctl` commandes et options].
+À l'aide de l'[`tridentctl`utilitaire, vous pouvez exécuter la commande  `get`pour obtenir les volumes subordonnés. Pour plus d'informations, consultez le lien : ../trident-managing-k8s/tridentctl.html[`tridentctl` commandes et options].
 
 [listing]
 ----
@@ -170,6 +170,5 @@ Drapeaux:
 
 Pour en savoir plus sur l'accès aux volumes entre espaces de noms :
 
-* Visitelink:https://cloud.netapp.com/blog/astra-blg-sharing-volumes-between-namespaces-say-hello-to-cross-namespace-volume-access["Partage de volumes entre espaces de noms : découvrez l’accès aux volumes inter-espaces de noms"^] .
 * Regardez la démo surlink:https://media.netapp.com/page/9071d19d-1438-5ed3-a7aa-ea4d73c28b7f/solutions-products["NetAppTV"^] .
 
