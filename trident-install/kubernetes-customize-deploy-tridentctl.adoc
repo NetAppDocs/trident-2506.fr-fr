@@ -16,6 +16,7 @@ Vous pouvez utiliser le programme d'installation Trident pour personnaliser l'in
 
 
 
+[[learn-about-the-installer]]
 == Découvrez l'installateur
 
 Le programme d'installation de Trident vous permet de personnaliser les attributs.  Par exemple, si vous avez copié l'image Trident dans un dépôt privé, vous pouvez spécifier le nom de l'image en utilisant `--trident-image` .  Si vous avez copié l'image Trident ainsi que les images CSI sidecar nécessaires dans un dépôt privé, il peut être préférable de spécifier l'emplacement de ce dépôt en utilisant le `--image-registry` interrupteur, qui prend la forme `<registry FQDN>[:port]` .

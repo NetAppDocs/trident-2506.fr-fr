@@ -16,6 +16,7 @@ Suivez les recommandations ci-dessous pour garantir la sécurité de votre insta
 
 
 
+[[run-trident-in-its-own-namespace]]
 == Exécutez Trident dans son propre espace de noms
 
 Il est important d'empêcher les applications, les administrateurs d'applications, les utilisateurs et les applications de gestion d'accéder aux définitions d'objets Trident ou aux pods afin de garantir un stockage fiable et de bloquer toute activité malveillante potentielle.
@@ -24,6 +25,7 @@ Pour séparer les autres applications et utilisateurs de Trident, installez touj
 
 
 
+[[use-chap-authentication-with-ontap-san-backends]]
 == Utilisez l'authentification CHAP avec les backends SAN ONTAP.
 
 Trident prend en charge l'authentification basée sur CHAP pour les charges de travail ONTAP SAN (en utilisant le `ontap-san` et `ontap-san-economy` conducteurs).  NetApp recommande l'utilisation du protocole CHAP bidirectionnel avec Trident pour l'authentification entre un hôte et le système de stockage dorsal.
@@ -32,6 +34,7 @@ Pour les backends ONTAP utilisant les pilotes de stockage SAN, Trident peut conf
 
 
 
+[[use-chap-authentication-with-netapp-hci-and-solidfire-backends]]
 == Utilisez l'authentification CHAP avec les backends NetApp HCI et SolidFire.
 
 NetApp recommande le déploiement du protocole CHAP bidirectionnel pour garantir l'authentification entre un hôte et les serveurs dorsaux NetApp HCI et SolidFire .  Trident utilise un objet secret qui inclut deux mots de passe CHAP par locataire.  Lors de son installation, Trident gère les secrets CHAP et les stocke dans un `tridentvolume` Objet CR pour le PV respectif.  Lorsque vous créez un PV, Trident utilise les secrets CHAP pour initier une session iSCSI et communiquer avec le système NetApp HCI et SolidFire via CHAP.
@@ -41,6 +44,7 @@ NOTE: Les volumes créés par Trident ne sont associés à aucun groupe d'accès
 
 
 
+[[use-trident-with-nve-and-nae]]
 == Utilisez Trident avec NVE et NAE
 
 NetApp ONTAP assure le chiffrement des données au repos afin de protéger les données sensibles en cas de vol, de retour ou de réutilisation d'un disque. Pour plus de détails, reportez-vous àlink:https://docs.netapp.com/us-en/ontap/encryption-at-rest/configure-netapp-volume-encryption-concept.html["Présentation de la configuration du chiffrement de volume NetApp"^] .

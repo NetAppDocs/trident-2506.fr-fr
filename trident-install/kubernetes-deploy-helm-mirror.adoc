@@ -16,6 +16,7 @@ Vous pouvez déployer l'opérateur Trident et installer Trident à l'aide de Hel
 
 
 
+[[critical-information-about-trident-25-06]]
 == Informations essentielles concernant le Trident 25.06
 
 *Vous devez lire les informations essentielles suivantes concernant Trident.*
@@ -36,6 +37,7 @@ Utilisation d'une configuration sans chemins multiples ou utilisation de `find_m
 ====
 
 
+[[deploy-the-trident-operator-and-install-trident-using-helm]]
 == Déployez l'opérateur Trident et installez Trident à l'aide de Helm.
 
 Utiliser le Tridentlink:https://artifacthub.io/packages/helm/netapp-trident/trident-operator["Carte de barre"^] Vous pouvez déployer l'opérateur Trident et installer Trident en une seule étape.
@@ -43,7 +45,7 @@ Utiliser le Tridentlink:https://artifacthub.io/packages/helm/netapp-trident/trid
 Vérifiez link:../trident-install/kubernetes-deploy.html["aperçu de l'installation"] pour vous assurer que vous avez respecté les prérequis d'installation et sélectionné la bonne option d'installation pour votre environnement.
 
 .Avant de commencer
-En plus de link:../trident-install/kubernetes-deploy.html#before-you-deploy["prérequis de déploiement"] vous avez besoin de link:https://v3.helm.sh/["Helm version 3"^].
+En plus de link:kubernetes-deploy.html#before-you-begin["prérequis de déploiement"] vous avez besoin de link:https://v3.helm.sh/["Helm version 3"^].
 
 
 IMPORTANT: Lors de l'installation de Trident dans un dépôt privé, si vous utilisez le `imageRegistry` Utilisez l'option permettant de spécifier l'emplacement du dépôt, ne pas utiliser `/netapp/` dans le chemin du dépôt.
@@ -84,6 +86,7 @@ Vous pouvez utiliser `helm list` pour consulter les détails d'installation tels
 
 
 
+[[pass-configuration-data-during-install]]
 == Transmettez les données de configuration lors de l'installation
 
 Il existe deux façons de transmettre les données de configuration lors de l'installation :
@@ -116,6 +119,7 @@ helm install <name> netapp-trident/trident-operator --version 100.2506.0  --crea
 ----
 
 
+[[configuration-options]]
 == Options de configuration
 
 Ce tableau et le `values.yaml` Le fichier, qui fait partie du graphique Helm, fournit la liste des clés et leurs valeurs par défaut.

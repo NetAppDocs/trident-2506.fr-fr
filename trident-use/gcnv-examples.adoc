@@ -16,6 +16,7 @@ Découvrez les options de configuration backend pour Google Cloud NetApp Volumes
 
 
 
+[[backend-configuration-options]]
 == options de configuration du backend
 
 Chaque serveur dorsal provisionne des volumes dans une seule région Google Cloud.  Pour créer des volumes dans d'autres régions, vous pouvez définir des serveurs backend supplémentaires.
@@ -74,6 +75,7 @@ Chaque serveur dorsal provisionne des volumes dans une seule région Google Clou
 |===
 
 
+[[volume-provisioning-options]]
 == options de provisionnement de volume
 
 Vous pouvez contrôler le provisionnement des volumes par défaut dans le `defaults` section du fichier de configuration.
@@ -96,6 +98,7 @@ Vous pouvez contrôler le provisionnement des volumes par défaut dans le `defau
 |===
 
 
+[[example-configurations]]
 == Exemples de configurations
 
 Les exemples suivants présentent des configurations de base qui laissent la plupart des paramètres par défaut.  Voici la manière la plus simple de définir un backend.
@@ -339,6 +342,7 @@ supportedTopologies:
 ====
 
 
+[[whats-next]]
 == Quelle est la prochaine étape ?
 
 Après avoir créé le fichier de configuration du backend, exécutez la commande suivante :
@@ -366,6 +370,7 @@ Une fois le problème du fichier de configuration identifié et corrigé, vous p
 
 
 
+[[storage-class-definitions]]
 == Définitions des classes de stockage
 
 Voici un exemple de base `StorageClass` définition qui fait référence au backend ci-dessus.
@@ -419,6 +424,7 @@ Pour plus de détails sur les classes de stockage, veuillez consulterlink:../tri
 
 
 
+[[example-definitions-for-smb-volumes]]
 === Exemples de définitions pour les volumes SMB
 
 En utilisant `nasType` , `node-stage-secret-name` , et `node-stage-secret-namespace` Vous pouvez spécifier un volume SMB et fournir les informations d'identification Active Directory requises.  N'importe quel nom d'utilisateur/mot de passe Active Directory, avec ou sans autorisations, peut être utilisé comme secret de l'étape du nœud.
@@ -479,6 +485,7 @@ NOTE: `nasType: smb`filtres pour les pools prenant en charge les volumes SMB. `n
 
 
 
+[[pvc-definition-example]]
 === Exemple de définition du PVC
 
 [source, yaml]

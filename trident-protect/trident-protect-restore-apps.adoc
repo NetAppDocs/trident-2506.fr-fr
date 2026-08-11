@@ -26,6 +26,7 @@ Vous pouvez utiliser Trident Protect pour restaurer votre application à partir 
 ====
 
 
+[[restore-from-a-backup-to-a-different-namespace]]
 == Restaurer à partir d'une sauvegarde vers un espace de noms différent
 
 Lorsque vous restaurez une sauvegarde dans un espace de noms différent à l'aide d'une ressource personnalisée BackupRestore, Trident Protect restaure l'application dans un nouvel espace de noms et crée une ressource personnalisée d'application pour l'application restaurée. Pour protéger l'application restaurée, créez des sauvegardes ou des instantanés à la demande, ou établissez un calendrier de protection.
@@ -148,6 +149,7 @@ tridentctl-protect create backuprestore <my_restore_name> \
 ====
 
 
+[[restore-from-a-backup-to-the-original-namespace]]
 == Restaurer à partir d'une sauvegarde vers l'espace de noms d'origine
 
 Vous pouvez restaurer une sauvegarde dans l'espace de noms d'origine à tout moment.
@@ -267,6 +269,7 @@ tridentctl-protect create backupinplacerestore <my_restore_name> \
 ====
 
 
+[[restore-from-a-backup-to-a-different-cluster]]
 == Restaurer à partir d'une sauvegarde vers un cluster différent
 
 Vous pouvez restaurer une sauvegarde sur un autre cluster en cas de problème avec le cluster d'origine.
@@ -387,6 +390,7 @@ tridentctl-protect create backuprestore <restore_name> \
 ====
 
 
+[[restore-from-a-snapshot-to-a-different-namespace]]
 == Restaurer à partir d'un instantané vers un espace de noms différent
 
 Vous pouvez restaurer des données à partir d'un instantané à l'aide d'un fichier de ressources personnalisé (CR), soit dans un espace de noms différent, soit dans l'espace de noms source d'origine. Lorsque vous restaurez un instantané dans un espace de noms différent à l'aide d'une ressource personnalisée SnapshotRestore, Trident Protect restaure l'application dans un nouvel espace de noms et crée une ressource personnalisée d'application pour l'application restaurée. Pour protéger l'application restaurée, créez des sauvegardes ou des instantanés à la demande, ou établissez un calendrier de protection.
@@ -514,6 +518,7 @@ tridentctl-protect create snapshotrestore <my_restore_name> \
 ====
 
 
+[[restore-from-a-snapshot-to-the-original-namespace]]
 == Restaurer à partir d'un instantané vers l'espace de noms d'origine
 
 Vous pouvez restaurer un instantané dans l'espace de noms d'origine à tout moment.
@@ -630,6 +635,7 @@ tridentctl-protect create snapshotinplacerestore <my_restore_name> \
 ====
 
 
+[[check-the-status-of-a-restore-operation]]
 == Vérifier l'état d'une opération de restauration
 
 Vous pouvez utiliser la ligne de commande pour vérifier l'état d'une opération de restauration : en cours, terminée ou ayant échoué.

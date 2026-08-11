@@ -19,6 +19,7 @@ NOTE: VolumeGroupSnapshot est une fonctionnalité bêta de Kubernetes avec des A
 
 
 
+[[create-volume-group-snapshots]]
 == Créer des instantanés de groupes de volumes
 
 La prise en charge des instantanés de groupes de volumes est assurée par `ontap-san` pilote uniquement pour le protocole iSCSI, non encore pris en charge avec Fibre Channel (FCP) ni NVMe/TCP.  Avant de commencer
@@ -95,6 +96,7 @@ spec:
 ----
 
 
+[[recover-volume-data-using-a-group-snapshot]]
 == Récupérer des données de volume à l'aide d'un instantané de groupe
 
 Vous pouvez restaurer des volumes persistants individuels à l'aide des instantanés individuels créés dans le cadre de l'instantané du groupe de volumes.  Vous ne pouvez pas récupérer l'instantané du groupe de volumes en tant qu'unité.
@@ -110,6 +112,7 @@ NOTE: Lorsque vous restaurez une copie instantanée, la configuration de volume 
 
 
 
+[[in-place-volume-restoration-from-a-snapshot]]
 == Restauration de volume sur place à partir d'un instantané
 
 Trident permet une restauration volumétrique rapide et in situ à partir d'une image instantanée grâce à `TridentActionSnapshotRestore` (TASR) CR.  Cette demande de modification (CR) fonctionne comme une action impérative Kubernetes et ne persiste pas une fois l'opération terminée.
@@ -118,6 +121,7 @@ Pour plus d'informations, voir link:../trident-use/vol-snapshots.html#in-place-v
 
 
 
+[[delete-a-pv-with-associated-group-snapshots]]
 == Supprimer un PV avec des instantanés de groupe associés
 
 Lors de la suppression d'un instantané de volume de groupe :
@@ -129,6 +133,7 @@ Lors de la suppression d'un instantané de volume de groupe :
 
 
 
+[[deploy-a-volume-snapshot-controller]]
 == Déployer un contrôleur d'instantané de volume
 
 Si votre distribution Kubernetes n'inclut pas le contrôleur de snapshots et les CRD, vous pouvez les déployer comme suit.
@@ -168,6 +173,7 @@ NOTE: Si nécessaire, ouvrez `deploy/kubernetes/snapshot-controller/rbac-snapsho
 
 
 
+[[related-links]]
 == Liens connexes
 
 * link:../trident-reference/objects.html#kubernetes-volumegroupsnapshotclass-objects["Classe d'instantané de groupe de volume"]

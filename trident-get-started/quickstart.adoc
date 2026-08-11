@@ -57,6 +57,7 @@ link:../trident-use/vol-provision.html["Provisionnez un volume"]
 
 
 
+[[whats-next]]
 == Quelle est la prochaine étape ?
 
 Vous pouvez désormais ajouter des serveurs backend supplémentaires, gérer les classes de stockage, gérer les serveurs backend et effectuer des opérations sur les volumes.

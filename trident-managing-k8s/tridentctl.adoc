@@ -16,6 +16,7 @@ Le https://github.com/NetApp/trident/releases["Pack d'installation Trident"^] co
 
 
 
+[[commands-and-global-flags]]
 == Commandes et drapeaux globaux
 
 Vous pouvez courir `tridentctl help` pour obtenir la liste des commandes disponibles pour `tridentctl` ou ajouter le `--help` Utilisez l'option `--flag` avec n'importe quelle commande pour obtenir la liste des options et des indicateurs disponibles pour cette commande spécifique.
@@ -70,10 +71,12 @@ WARNING: L'interface REST de Trident peut être configurée pour écouter et ser
 ====
 
 
+[[command-options-and-flags]]
 == Options de commande et drapeaux
 
 
 
+[[create]]
 === créer
 
 Utilisez le `create` commande pour ajouter une ressource à Trident.
@@ -85,6 +88,7 @@ Options:: `backend`: Ajouter un backend à Trident.
 
 
 
+[[delete]]
 === supprimer
 
 Utilisez le `delete` commande permettant de supprimer une ou plusieurs ressources de Trident.
@@ -99,6 +103,7 @@ Options:: `backend`: Supprimez un ou plusieurs backends de stockage de Trident.
 
 
 
+[[get]]
 === obtenir
 
 Utilisez le `get` commande pour obtenir une ou plusieurs ressources de Trident.
@@ -116,6 +121,7 @@ drapeaux:: `-h`, `--help` : Aide pour les volumes.
 
 
 
+[[images]]
 === images
 
 Utiliser `images` drapeaux permettant d'imprimer un tableau des images de conteneurs dont Trident a besoin.
@@ -128,6 +134,7 @@ drapeaux:: `-h`, `--help` Aide pour les images.
 
 
 
+[[import-volume]]
 === volume d'importation
 
 Utilisez le `import volume` commande pour importer un volume existant dans Trident.
@@ -142,6 +149,7 @@ drapeaux:: `-f`, `--filename string` : Chemin d'accès au fichier PVC YAML ou JS
 
 
 
+[[install]]
 === installer
 
 Utilisez le `install` options pour installer Trident.
@@ -171,6 +179,7 @@ drapeaux:: `--autosupport-image string`: L'image conteneur pour la télémétrie
 
 
 
+[[logs]]
 === journaux
 
 Utiliser `logs` options pour imprimer les journaux de Trident.
@@ -187,6 +196,7 @@ drapeaux:: `-a`, `--archive` : Créer une archive de support contenant tous les 
 
 
 
+[[send]]
 === envoyer
 
 Utilisez le `send` commande pour envoyer une ressource depuis Trident.
@@ -198,6 +208,7 @@ Options:: `autosupport`: Envoyer une archive Autosupport à NetApp.
 
 
 
+[[uninstall]]
 === désinstaller
 
 Utiliser `uninstall` options pour désinstaller Trident.
@@ -210,6 +221,7 @@ drapeaux:: `-h, --help`Aide à la désinstallation.
 
 
 
+[[update]]
 === mise à jour
 
 Utilisez le `update` commande pour modifier une ressource dans Trident.
@@ -221,6 +233,7 @@ Options:: `backend`: Mettre à jour un backend dans Trident.
 
 
 
+[[update-backend-state]]
 === mettre à jour l'état du backend
 
 Utilisez le `update backend state` commande permettant de suspendre ou de reprendre les opérations en arrière-plan.
@@ -297,6 +310,7 @@ spec:
 ====
 
 
+[[version]]
 === version
 
 Utiliser `version` drapeaux pour imprimer la version de `tridentctl` et le service Trident en fonctionnement.
@@ -309,6 +323,7 @@ drapeaux:: `--client`Version client uniquement (aucun serveur requis).
 
 
 
+[[plugin-support]]
 == Prise en charge des plugins
 
 Tridentctl prend en charge des plugins similaires à kubectl.  Tridentctl détecte un plugin si le nom du fichier binaire du plugin suit le schéma « tridentctl-<plugin> », et si le binaire est situé dans un dossier répertorié dans la variable d'environnement PATH.  Tous les plugins détectés sont répertoriés dans la section plugins de l'aide de tridentctl.  Vous pouvez également limiter la recherche en spécifiant un dossier de plugins dans la variable d'environnement TRIDENTCTL_PLUGIN_PATH (Exemple : `TRIDENTCTL_PLUGIN_PATH=~/tridentctl-plugins/` ).  Si la variable est utilisée, tridenctl effectue la recherche uniquement dans le dossier spécifié.
